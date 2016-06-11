@@ -3,6 +3,7 @@ package nakayoshikoyoshi.hackthon;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.content.Intent;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -13,9 +14,11 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.GoogleMapOptions;
 import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -45,6 +48,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+
+
         // 拡大縮小、移動など全てを禁止する
         UiSettings settings = mMap.getUiSettings();
         settings.setAllGesturesEnabled(false);
@@ -56,12 +61,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng hakodateStation = new LatLng(41.774048, 140.726415);
         LatLng goryokaku = new LatLng(41.798471, 140.757089);
         LatLng goryokakuStation = new LatLng(41.805079, 140.733436);
+        LatLng daimon = new LatLng(41.772044, 140.730198);
 
 
-        mMap.addMarker(new MarkerOptions().position(hakodate).title("病院"));
-        mMap.addMarker(new MarkerOptions().position(hakodateStation).title("函館駅"));
-        mMap.addMarker(new MarkerOptions().position(goryokaku).title("五稜郭"));
-        mMap.addMarker(new MarkerOptions().position(goryokakuStation).title("五稜郭駅"));
+        final Marker hakodateMarker = mMap.addMarker(new MarkerOptions().position(hakodate).title("病院"));
+        final Marker hakodateStationMarker = mMap.addMarker(new MarkerOptions().position(hakodateStation).title("函館駅"));
+        final Marker goryoukakuMarker = mMap.addMarker(new MarkerOptions().position(goryokaku).title("五稜郭"));
+        final Marker goryoukakuStationMarker = mMap.addMarker(new MarkerOptions().position(goryokakuStation).title("五稜郭駅"));
+        final Marker daimonMarker = mMap.addMarker(new MarkerOptions().position(daimon).title("大門通り"));
 
         CameraPosition cameraPosition = CameraPosition.builder()
                 .target(tokyo)
@@ -82,6 +89,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition),
                 3000, null);
+
+        mMap.setOnMarkerClickListener(
+                new OnMarkerClickListener(){
+                    @Override
+                    public boolean onMarkerClick(Marker marker) {
+                        if (marker.equals(goryoukakuMarker)) {
+                            Intent intent = new Intent(getApplication(), MapsActivity.class);
+                            startActivity(intent);
+                        }
+                        return true;
+                    }
+                }
+        );
 
     }
 
