@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        Intent intent = new Intent(getApplication(), TitleActivity.class);
+        Intent intent = new Intent(getApplication(), MapsActivity.class);
         startActivity(intent);
 
         /*
