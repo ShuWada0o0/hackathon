@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        Intent intent = new Intent(getApplication(), MapsActivity.class);
+        Intent intent = new Intent(getApplication(), avatar_setting.class);
         startActivity(intent);
 
         /*
