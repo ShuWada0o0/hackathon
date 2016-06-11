@@ -21,7 +21,7 @@ public class avatar_setting extends AppCompatActivity {
         // 選択されているアイテムを取得
         String item_hed = (String)spinner.getSelectedItem();
 
-//        final TextView textView = (TextView) findViewById(R.id.text_ava);
-//        TextView.setText(String.valueOf(item_hed));
+        final TextView textView = (TextView) findViewById(R.id.text_ava);
+        textView.setText(String.valueOf(item_hed));
     }
 }
