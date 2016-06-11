@@ -1,4 +1,14 @@
 <resources>
     <string name="app_name">Hackthon</string>
     <string name="title_activity_maps">Map</string>
+    <string name="item_hed" />
+
+    <string-array name="list">
+        <item>A型</item>
+        <item>B型</item>
+        <item>O型</item>
+        <item>AB型</item>
+    </string-array>
+    <string name="title_activity_shop_maps">Map</string>
+
 </resources>
