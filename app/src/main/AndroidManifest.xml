@@ -41,7 +41,11 @@
 
         <activity
             android:name=".MapsActivity"
-            android:label="@string/title_activity_maps"></activity>
+            android:label="@string/title_activity_maps" />
+        <activity android:name=".avatar_setting" />
+        <activity
+            android:name=".ShopMapsActivity"
+            android:label="@string/title_activity_shop_maps"></activity>
     </application>
 
 </manifest>

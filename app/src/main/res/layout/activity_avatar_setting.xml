@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="nakayoshikoyoshi.hackthon.avatar_setting">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout">
+
+    </LinearLayout>
+
+    <Spinner
+        android:layout_width="122dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/ava_hed"
+        android:layout_gravity="right"
+        android:entries="@array/list"
+        android:layout_marginTop="67dp"
+        android:layout_below="@+id/linearLayout"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ava_body"
+        android:layout_marginTop="45dp"
+        android:entries="@array/list"
+        android:layout_below="@+id/ava_hed"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignLeft="@+id/ava_hed"
+        android:layout_alignStart="@+id/ava_hed" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/aba_foot"
+        android:layout_marginTop="49dp"
+        android:entries="@array/list"
+        android:layout_below="@+id/ava_body"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignLeft="@+id/ava_body"
+        android:layout_alignStart="@+id/ava_body" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/item_hed"
+        android:id="@+id/text_ava"
+        android:layout_alignTop="@+id/ava_hed"
+        android:layout_toRightOf="@+id/linearLayout"
+        android:layout_toLeftOf="@+id/ava_hed"
+        android:layout_toStartOf="@+id/ava_hed" />
+
+</RelativeLayout>
