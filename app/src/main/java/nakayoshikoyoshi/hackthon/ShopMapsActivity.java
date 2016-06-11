@@ -1,30 +1,28 @@
 package nakayoshikoyoshi.hackthon;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
-import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.maps.GoogleMapOptions;
-import com.google.android.gms.maps.CameraUpdate;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class ShopMapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_maps);
+        setContentView(R.layout.activity_shop_maps);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -74,8 +72,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.moveCamera(update);
 
         cameraPosition = CameraPosition.builder()
-                .target(hakodate)
-                .zoom(13f)
+                .target(goryokaku)
+                .zoom(30f)
                 .bearing(0)
                 .tilt(60)
                 .build();
@@ -85,12 +83,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
-    @Override
     public boolean dispatchKeyEvent(KeyEvent e) {
 
         // 戻るボタンが押されたとき
         if(e.getKeyCode() == KeyEvent.KEYCODE_BACK) {
-            // 後ろは振り返らない
+            // 函館の全体図に戻る
+            Intent intent = new Intent(getApplication(), MapsActivity.class);
+            startActivity(intent);
             return true;
         }
         return super.dispatchKeyEvent(e);

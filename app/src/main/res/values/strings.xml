@@ -9,5 +9,6 @@
         <item>O型</item>
         <item>AB型</item>
     </string-array>
+    <string name="title_activity_shop_maps">Map</string>
 
 </resources>
