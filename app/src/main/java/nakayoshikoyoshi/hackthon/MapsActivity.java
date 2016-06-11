@@ -6,10 +6,16 @@ import android.view.KeyEvent;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.UiSettings;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.GoogleMapOptions;
+import com.google.android.gms.maps.CameraUpdate;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -39,10 +45,44 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        // 拡大縮小、移動など全てを禁止する
+        UiSettings settings = mMap.getUiSettings();
+        settings.setAllGesturesEnabled(false);
+        settings.setZoomControlsEnabled(true);
+
+        // 位置をそれぞれ記憶
+        LatLng tokyo = new LatLng(35.708953, 139.730978);
+        LatLng hakodate = new LatLng(41.792907, 140.755731);
+        LatLng hakodateStation = new LatLng(41.774048, 140.726415);
+        LatLng goryokaku = new LatLng(41.798471, 140.757089);
+        LatLng goryokakuStation = new LatLng(41.805079, 140.733436);
+
+
+        mMap.addMarker(new MarkerOptions().position(hakodate).title("病院"));
+        mMap.addMarker(new MarkerOptions().position(hakodateStation).title("函館駅"));
+        mMap.addMarker(new MarkerOptions().position(goryokaku).title("五稜郭"));
+        mMap.addMarker(new MarkerOptions().position(goryokakuStation).title("五稜郭駅"));
+
+        CameraPosition cameraPosition = CameraPosition.builder()
+                .target(tokyo)
+                .tilt(45)
+                .zoom(5f)
+                .build();
+
+        CameraUpdate update = CameraUpdateFactory.newCameraPosition(cameraPosition);
+
+        mMap.moveCamera(update);
+
+        cameraPosition = CameraPosition.builder()
+                .target(hakodate)
+                .zoom(13f)
+                .bearing(0)
+                .tilt(60)
+                .build();
+
+        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition),
+                3000, null);
+
     }
 
     @Override
